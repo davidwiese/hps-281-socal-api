@@ -5,7 +5,7 @@ const PORT = 8000;
 const hps281socal = {
   errorMsg: {
     error:
-      "Peak not found -- use a single word, all lowercase, and no spaces (e.g. 'gorgonio' or 'dragonshead')",
+      "Peak not found -- use a single word and no spaces (e.g. 'gorgonio' or 'dragonshead')",
   },
   gorgonio: {
     name: "San Gorgonio Mountain",
@@ -66,7 +66,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/:name", (req, res) => {
-  const peakName = req.params.name;
+  const peakName = req.params.name.toLowerCase();
   if (hps281socal[peakName]) {
     res.json(hps281socal[peakName]);
   } else {
