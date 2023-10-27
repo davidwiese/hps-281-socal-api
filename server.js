@@ -5,7 +5,7 @@ const PORT = 8000;
 const hps281socal = {
   errorMsg: {
     error:
-      "Peak not found -- use a single word and no spaces (e.g. 'gorgonio' or 'dragonshead'). Do not add words like 'peak' or 'mountain' to your search.",
+      "Peak not found -- use a single word and no spaces (e.g. 'gorgonio' or 'dragonshead'). Do not add words like 'san', 'peak', or 'mountain' to your search.",
   },
   gorgonio: {
     name: "San Gorgonio Mountain",
