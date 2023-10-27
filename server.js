@@ -3,6 +3,10 @@ const app = express();
 const PORT = 8000;
 
 const hps281socal = {
+  errorMsg: {
+    error:
+      "Peak not found -- use a single word, all lowercase, and no spaces (e.g. 'gorgonio' or 'dragonshead')",
+  },
   gorgonio: {
     name: "San Gorgonio Mountain",
     elevation: 11503,
@@ -16,7 +20,7 @@ const hps281socal = {
     elevation: 11205,
     range: "San Bernardino Mountains",
     section: "San Gorgonio Area",
-    nickname: "",
+    nickname: null,
     complete: true,
   },
   bighorn: {
@@ -24,7 +28,7 @@ const hps281socal = {
     elevation: 10997,
     range: "San Bernardino Mountains",
     section: "San Gorgonio Area",
-    nickname: "",
+    nickname: null,
     complete: false,
   },
   dragonshead: {
@@ -32,7 +36,7 @@ const hps281socal = {
     elevation: 10866,
     range: "San Bernardino Mountains",
     section: "San Gorgonio Area",
-    nickname: "",
+    nickname: null,
     complete: false,
   },
   anderson: {
@@ -40,7 +44,7 @@ const hps281socal = {
     elevation: 10840,
     range: "San Bernardino Mountains",
     section: "San Gorgonio Area",
-    nickname: "",
+    nickname: null,
     complete: true,
   },
   jacinto: {
@@ -48,7 +52,7 @@ const hps281socal = {
     elevation: 10839,
     range: "San Jacinto Mountains",
     section: "San Jacinto Area",
-    nickname: "",
+    nickname: null,
     complete: true,
   },
 };
@@ -59,6 +63,15 @@ app.get("/", (req, res) => {
 
 app.get("/api", (req, res) => {
   res.json(hps281socal);
+});
+
+app.get("/api/:name", (req, res) => {
+  const peakName = req.params.name;
+  if (hps281socal[peakName]) {
+    res.json(hps281socal[peakName]);
+  } else {
+    res.json(hps281socal["errorMsg"]);
+  }
 });
 
 app.listen(PORT, () => {
