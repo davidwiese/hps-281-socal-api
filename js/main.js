@@ -1,7 +1,7 @@
-document.querySelector("button").addEventListener("click", apiRequest);
+document.getElementById("searchButton").addEventListener("click", apiRequest);
 
 async function apiRequest() {
-  const peakName = document.querySelector("input").value;
+  const peakName = document.querySelector("searchInput").value;
   try {
     const response = await fetch(
       `https://hps-281-socal-api-c3f4c9431c63.herokuapp.com/api/${peakName}`
@@ -9,7 +9,7 @@ async function apiRequest() {
     const data = await response.json();
 
     console.log(data);
-    document.querySelector("h3").innerText = data;
+    document.getElementById("peakData").innerText = data;
   } catch (error) {
     console.log(error);
   }
